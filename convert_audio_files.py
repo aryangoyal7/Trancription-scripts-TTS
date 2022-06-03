@@ -19,7 +19,8 @@ if can_scan == True:
     if(file_name[-4:] != '.wav'): continue
     with wave.open(folder_path + file_name, "rb") as wave_file:
         frame_rate = wave_file.getframerate()
-        if frame_rate == 22050:
+        channels = wave_file.getnchannels()
+        if frame_rate == 22050 and channels == 1:
           print(f'{file_name} does not require resampling.')
         else:
           print(f'{file_name} requires resampling.')
